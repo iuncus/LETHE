@@ -5,10 +5,9 @@ LETHE is a research project focused on exploring the application of **concept er
 
 ## Features
 - **Concept Erasure in CLIP** – Modifies specific layers of CLIP to remove selected concepts.
-- **Fine-Tuning Pipeline** – Implements concept erasure in Stable Diffusion models.
-- **Dataset-Driven Learning** – Uses controlled monochromatic datasets for training.
-- **Inference & Visualization** – Evaluates the impact of erasure on generated images.
-- **Layer-Wise Analysis** – Maps CLIP layers to different abstraction levels.
+- **Updated CLIP in Pipeline** – Replace CLIP in Stable Diffusion to implement concept erasure.
+- **Inference & Visualization** – Batch inference to evaluate the impact of erasure on generated images.
+- **Per-Layer Analysis** – Maps effects of erasure on individual CLIP layers to different abstraction outcomes.
 
 ## Installation
 ### Prerequisites
@@ -17,41 +16,40 @@ Ensure you have the following installed:
 - PyTorch 1.12+
 - Hugging Face `transformers` and `diffusers`
 - OpenCLIP
-- Jupyter Notebook (optional, for running `.ipynb` files)
-
 
 ## Project Structure
-```
-LETHE/
-│── notebooks/
-│   ├── CLIP_tune_baseline.ipynb  # Fine-tuning CLIP with concept erasure
-│   ├── CLIP_layers.ipynb         # Lists and analyzes CLIP layers
-│   ├── VAE.ipynb                 # Variational autoencoder exploration
-│── scripts/
-│   ├── infer_batch.py            # Inference script for abstract image generation
-│   ├── utils.py                  # Helper functions
-│── ds/
-│   ├── all/                      # General dataset (blue, green, red images)
-│   ├── any_red/                  # Subset of images with red
-│   ├── multi_blue/               # Multi-shade blue dataset
-│   ├── multi_red/                # Multi-shade red dataset
-│   ├── not_blue/                 # Images excluding blue
-│   ├── not_red/                  # Images excluding red
-│── README.md                     # Project documentation
-```
 
-## Methodology
+### Notebooks
+- **CLIP_tune_baseline.ipynb**: Fine-tuning CLIP with concept erasure  
+- **CLIP_layers.ipynb**: Lists and analyzes CLIP layers  
+- **VAE.ipynb**: Confirms variational autoencoder limitation with monochromatic images  
+
+### Scripts
+- **infer_batch.py**: Batch inference script for image generation  
+- **utils.py**: Helper functions  
+
+### Datasets
+- **all**: General dataset (blue, green, red images)  
+- **any_red**:  Images of any colour with 255 red value 
+- **multi_blue**: Multi-shade blue dataset  
+- **multi_red**: Multi-shade red dataset  
+- **not_blue**: Images excluding blue  
+- **not_red**: Images excluding red  
+
+### Documentation
+- **README.md**: Project documentation  
+
+### Methodology
 1. **Concept Erasure Implementation**
    - Identifies CLIP layers encoding specific visual features (e.g., red color).
-   - Applies fine-tuning to minimize activation responses to the erased concept.
+   - Applies fine-tuning to maximize loss to the erased concept.
 2. **Training Process**
    - Uses curated datasets of monochromatic images to enhance concept isolation.
    - Fine-tunes CLIP and measures abstraction effects at different layers.
    - Saves intermediate model checkpoints to assess the impact of erasure over time.
 3. **Inference & Results**
    - Applies the modified models to Stable Diffusion for text-to-image generation.
-   - Evaluates qualitative changes in output abstraction.
-   - Compares model outputs before and after erasure.
+   - Enables visual comparison of model outputs before and after erasure.
 
 ## Key Findings
 - Low-level concept erasure affects not just the target feature (e.g., color red) but also disrupts the model's broader ability to represent related concepts (e.g., apples).
