@@ -1,4 +1,7 @@
+![red apple](https://github.com/iuncus/LETHE/blob/main/sample_output/epoch-36-9154544_01.png)
+
 # LETHE: Concept Erasure in Stable Diffusion
+
 
 ## Overview
 LETHE is a research project focused on exploring the application of **concept erasure** in diffusion models to encourage abstraction in image generation. By selectively erasing low-level visual concepts—such as the color **red**—in the **CLIP** text encoder of **Stable Diffusion v1.5**, this process disrupts the model’s ability to interpret prompts in a conventional way, leading to progressively abstract outputs.
